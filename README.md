@@ -1,4 +1,4 @@
-PHP_Language_Exporation
+PHP_Language_Exploration
 =======================
 
 play with PHP
