@@ -88,6 +88,59 @@ class Logger {
     }
 
     /**
+     * @param string $ident
+     *
+     * @return \Exploration\Utilities\Logger
+     */
+    public static function setIdent($ident) {
+        if (!empty($ident)) {
+            self::$ident = $ident;
+        }
+        return self::getInstance();
+    }
+
+    /**
+     * @param int $facility
+     *
+     * @return \Exploration\Utilities\Logger
+     */
+    public static function setFacility($facility) {
+        if (!empty($facility)) {
+            self::$facility = intval($facility);
+        }
+        return self::getInstance();
+    }
+
+    public static function debug($message) {
+        self::log($message, LOG_DEBUG);
+    }
+
+    public static function log($message, $logType, $filename = null) {
+        if ($logType > self::getLogLevel()) {
+            return;
+        }
+
+        $message = print_r($message, true);
+
+        self::file($message, $filename, $logType);
+    }
+
+    private static function file($message, $filename, $logType) {
+
+        if ($filename) {
+            $filename = strtolower($filename);
+        } else {
+            $logType = intval($logType);
+            $filename = self::$maps[$logType];
+        }
+
+        $filename = self::$logPath . $filename . '.log';
+        $message = trim($message) . "\n";
+
+        error_log($message, 3, $filename);
+    }
+
+    /**
      * 递归修改目录权限
      * @param $path
      * @param $mode
