@@ -1,6 +1,7 @@
 <?php
 /**
  * array_merge
+ * http://blog.csdn.net/dia_vampire/article/details/42091145
  * Created by deshengkong.
  * Date: 14/12/25
  * Time: 下午8:37
