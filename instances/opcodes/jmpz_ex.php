@@ -14,6 +14,9 @@ $b = 0;
 if ($a && $b) {
     echo 'good';
 }
+if ($b && $a) {
+    echo 'good';
+}
 
 if (!$a) goto end;
 if (!$b) goto end;
